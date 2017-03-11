@@ -1,7 +1,24 @@
 {% extends 'NoIncSimpleStorefrontBundle:Default:base.html.twig' %}
 
 {% block body %} 
-	<div class="item pricing" id="pricing_table1">
+    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <form action="/login" method="get">
+            <button type="submit" class="btn btn-embossed btn-primary">Login</button>
+        </form>
+        <form action="/register" method="get">
+            <button type="submit" class="btn btn-embossed btn-primary">Register New User</button>
+        </form>
+    {% endif %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <form action="/logout" method="get">
+            <button type="submit" class="btn btn-embossed btn-primary">Logout</button>
+        </form>
+
+    {% endif %}
+
+
+    <br />
+    <div class="item pricing" id="pricing_table1">
 		
 		<div class="container">
 		
