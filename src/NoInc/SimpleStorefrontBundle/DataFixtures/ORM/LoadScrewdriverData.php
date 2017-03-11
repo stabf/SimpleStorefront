@@ -70,7 +70,7 @@ class LoadScrewdriverData extends AbstractFixture implements OrderedFixtureInter
     {
         return [
             "name" => "Screwdriver",
-            "price" => 1.40,
+            "price" => 3.00,
             "ingredients" => [
                 [
                     "name" => "Orange Juice",
