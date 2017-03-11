@@ -81,3 +81,6 @@ fos_user:
     from_email:
         address:        webmaster@example.com
         sender_name:    Admin
+    registration:
+        form:
+            type: NoInc\SimpleStorefrontBundle\Form\RegistrationType
