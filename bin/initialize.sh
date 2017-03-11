@@ -17,5 +17,7 @@ perl -p -i -e 's/\r\n$/\n/g' ./bin/*.sh
 
 echo -e "Running composer install and update and bower installs";
 composer config --global discard-changes true
+php bin/console doctrine:database:create
+php bin/console doctrine:schema:update --force
 composer install
 composer update
