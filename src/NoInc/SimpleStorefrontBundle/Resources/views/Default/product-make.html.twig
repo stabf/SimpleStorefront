@@ -6,7 +6,16 @@
 		<div class="top">
 		
 			<h2 class="editContent">{{ recipe.name }}</h2>
-			
+            {% if recipe.name == "Lemonade" %}
+                {% image '@NoIncSimpleStorefrontBundle/Resources/public/images/Lemonade.png' %}
+                    <img src="{{ asset_url }}" alt="Example" />
+                {% endimage %}
+            {% endif %}
+            {% if recipe.name == "Screwdriver" %}
+                {% image '@NoIncSimpleStorefrontBundle/Resources/public/images/Screwdriver.png' %}
+                    <img src="{{ asset_url }}" alt="Example" />
+                {% endimage %}
+            {% endif %}
 			<p class="price "><b class="editContent">${{ recipe.price }}</b></p>
 		
 		</div><!-- /.top -->
