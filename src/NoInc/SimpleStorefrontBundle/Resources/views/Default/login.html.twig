@@ -1,0 +1,31 @@
+{% extends 'NoIncSimpleStorefrontBundle:Default:base.html.twig' %}
+{% block body %}
+<body style="background-color:powderblue;">
+<style>
+    .space { margin-top: 300px; }
+    .bump { margin-left: 70px; }
+</style>
+
+<br /> 
+<div class="space"></div>
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<br />
+<center>
+    <form action="{{ path('login') }}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        
+        <br />
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="_password" />
+        
+        <br />
+
+        <div class="bump"><button type="submit" class="btn btn-embossed btn-primary">Login</button></div>
+    </form>
+</center>
+</body>
+{% endblock %}
