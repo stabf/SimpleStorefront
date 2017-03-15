@@ -1,6 +1,10 @@
 {% extends 'NoIncSimpleStorefrontBundle:Default:base.html.twig' %}
 
 {% block body %} 
+    <form action="/" method="get">
+        <button type="submit" class="btn btn-embossed btn-primary">Main Page</button>
+    </form>
+    <center>Admin capital available: ${{ app.user.capital }} </center>
 	<div class="item pricing" id="pricing_table1">
 		
 		<div class="container">
