@@ -83,7 +83,14 @@ class AdminController extends Controller
      */
     public function postBuyIngredientAction(Ingredient $ingredient)
     {
-            
+        $user = $this->getUser();
+        if($ingredient->getPrice() <= $user->getCapital())
+        {
+            $ingredient->setStock($ingredient->getStock() + 1);
+            $user->setCapital($user->getCapital() - $ingredient->getPrice());
+            $this->getDoctrine()->getEntityManager()->flush();
+
+        }
         return $this->redirectToRoute('admin_home');
     }
     
