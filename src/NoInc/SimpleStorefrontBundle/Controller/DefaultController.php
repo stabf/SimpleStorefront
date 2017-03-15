@@ -35,14 +35,20 @@ class DefaultController extends Controller
     {
         if ( $recipe->getProducts()->count() > 0 )
         {
-            $product = $recipe->getProducts()->first();
-            $query = $this->getDoctrine()->getEntityManager()->createQuery(
-            'SELECT u FROM NoIncSimpleStorefrontBundle:User u WHERE u.roles LIKE :role')->setParameter('role', '%"ROLE_ADMIN"%' );
-            $users = $query->getResult();
-            $adminUser = $users[0];
-            $adminUser->setCapital($adminUser->getCapital() + $recipe->getPrice());
-            $this->getDoctrine()->getEntityManager()->remove($product);
-            $this->getDoctrine()->getEntityManager()->flush();
+            $currentUser = $this->getUser();
+            if($currentUser->getCapital() >= $recipe->getPrice())
+            {
+                $currentUser->setCapital($currentUser->getCapital() - $recipe->getPrice());
+                $this->getDoctrine()->getEntityManager()->flush();
+                $product = $recipe->getProducts()->first();
+                $query = $this->getDoctrine()->getEntityManager()->createQuery(
+                'SELECT u FROM NoIncSimpleStorefrontBundle:User u WHERE u.roles LIKE :role')->setParameter('role', '%"ROLE_ADMIN"%' );
+                $users = $query->getResult();
+                $adminUser = $users[0];
+                $adminUser->setCapital($adminUser->getCapital() + $recipe->getPrice());
+                $this->getDoctrine()->getEntityManager()->remove($product);
+                $this->getDoctrine()->getEntityManager()->flush();
+            }
         }
         
         return $this->redirectToRoute('guest_home');
